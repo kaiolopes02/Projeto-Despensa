@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Despensa Inteligente 2.0</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<div class="card">
+    <h2>🏠 Despensa Familiar</h2>
+
+    <div class="form-group">
+        <!-- Campo Nome -->
+        <label for="itemName">Nome do Item:</label>
+        <input type="text" id="itemName" placeholder="Ex: Feijão, Detergente...">
+
+        <!-- Campo Categoria -->
+        <label for="itemCategory">Categoria:</label>
+        <select id="itemCategory">
+            <option value="Alimentos">🍎 Alimentos</option>
+            <option value="Limpeza">🧼 Limpeza</option>
+            <option value="Higiene">🪥 Higiene</option>
+            <option value="Outros">📦 Outros</option>
+        </select>
+
+        <!-- Campo Quantidade -->
+        <label for="itemQuantity">Quantidade:</label>
+        <input type="number" id="itemQuantity" value=" " placeholder="Quantidade">
+
+        <button id="addBtn">Adicionar à Lista</button>
+    </div>
+
+    <ul id="lista" class="item-list"></ul>
+</div>
+
+<script src="scripts/storage.js"></script>
+<script src="scripts/ui.js"></script>
+<script src="scripts/main.js"></script>
+</body>
+</html>
