@@ -53,7 +53,7 @@ function gerenciarSalvar() {
     }
 
     elNome.value = '';
-    elQtd.value = '1';
+    elQtd.value = '';
     atualizarTudo();
 }
 
@@ -77,7 +77,6 @@ function toggleCheck(index) {
 }
 
 function removerItem(index) {
-    if (confirm("Remover este item da lista?")) {
         itens.splice(index, 1);
         atualizarTudo();
     }
