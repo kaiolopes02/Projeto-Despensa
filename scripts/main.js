@@ -56,7 +56,7 @@ function gerenciarSalvar() {
     }
 
     elNome.value = '';
-    elQtd.value = '1';
+    elQtd.value = '';
     atualizarTudo();
 }
 
