@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'despensa_v2';
+const STORAGE_KEY = 'despensa_familiar_v3';
 
 function carregarItens() {
     const dados = localStorage.getItem(STORAGE_KEY);
@@ -8,4 +8,3 @@ function carregarItens() {
 function salvarItens(itens) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(itens));
 }
-

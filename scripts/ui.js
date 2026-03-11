@@ -1,28 +1,32 @@
 function renderizarItens(itens) {
     const lista = document.getElementById('lista');
     lista.innerHTML = '';
+    let somaTotal = 0;
 
     itens.forEach((item, index) => {
+        if (!item.checked) somaTotal += parseInt(item.quantity);
+
         const li = document.createElement('li');
-        li.className = 'item-card';
+        li.className = `item-card ${item.checked ? 'checked' : ''}`;
+        
         li.innerHTML = `
-            <div class="item-info">
-                <span class="item-name">${item.nome}</span>
-                <div class="item-meta">
-                    <span class="category-tag">${item.categoria}</span>
-                    <span class="quantity-badge">Qtd: ${item.quantidade}</span>
-                </div>
+            <div class="item-info" onclick="toggleCheck(${index})">
+                <span class="item-name">${item.name}</span>
+                <span class="item-details">${item.category} • Qtd: ${item.quantity}</span>
             </div>
-            <button class="btn-check" data-index="${index}">✓</button>
+            <div class="actions">
+                <button class="btn-icon" onclick="prepararEdicao(${index})" title="Editar">
+                    <i data-lucide="edit-3" style="width: 18px"></i>
+                </button>
+                <button class="btn-icon btn-del" onclick="removerItem(${index})" title="Excluir">
+                    <i data-lucide="trash-2" style="width: 18px"></i>
+                </button>
+            </div>
         `;
         lista.appendChild(li);
     });
 
-    // Adiciona evento aos botões de remoção
-    document.querySelectorAll('.btn-check').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const index = parseInt(e.target.getAttribute('data-index'));
-            removerItem(index);
-        });
-    });
+    document.getElementById('total-count').innerText = somaTotal;
+    // Reinicia os ícones do Lucide para os novos elementos
+    lucide.createIcons();
 }

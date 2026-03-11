@@ -3,34 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despensa Inteligente</title>
+    <title>Despensa Familiar - Lista de Faltas</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="icon" type="image/png" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#2ecc71">
 </head>
 <body>
 
 <div class="card">
-    <h2>Despensa Familiar</h2>
+    <header>
+        <h2><i data-lucide="shopping-cart"></i> Despensa Familiar</h2>
+        <button id="shareBtn" title="Compartilhar Lista">
+            <i data-lucide="share-2"></i> Compartilhar
+        </button>
+    </header>
 
-    <div class="form-group">
-        <!-- Campo Nome -->
-        <label for="itemName">Nome do Item:</label>
-        <input type="text" id="itemName" placeholder="Ex: Feijão, Detergente...">
+    <div class="form-container" id="form-topo">
+        <input type="hidden" id="editIndex" value="-1">
 
-        <!-- Campo Categoria -->
-        <label for="itemCategory">Categoria:</label>
-        <select id="itemCategory">
-            <option value="Alimentos">🍎 Alimentos</option>
-            <option value="Limpeza">🧼 Limpeza</option>
-            <option value="Higiene">🪥 Higiene</option>
-            <option value="Outros">📦 Outros</option>
-        </select>
+        <div class="input-group">
+            <label for="itemName">O que está faltando?</label>
+            <input type="text" id="itemName" placeholder="Ex: Arroz, Detergente...">
+        </div>
 
-        <!-- Campo Quantidade -->
-        <label for="itemQuantity">Quantidade:</label>
-        <input type="number" id="itemQuantity" min="1" value=" " placeholder="Quantidade">
+        <div class="row">
+            <div class="input-group flex-2">
+                <label for="itemCategory">Categoria</label>
+                <select id="itemCategory">
+                    <option value="Alimentos">🍎 Alimentos</option>
+                    <option value="Limpeza">🧼 Limpeza</option>
+                    <option value="Higiene">🪥 Higiene</option>
+                    <option value="Outros">📦 Outros</option>
+                </select>
+            </div>
+            <div class="input-group flex-1">
+                <label for="itemQuantity">Qtd.</label>
+                <input type="number" id="itemQuantity" min="1" value=" ">
+            </div>
+        </div>
 
-        <button id="addBtn">Adicionar à Lista</button>
+        <button id="addBtn">
+            <i data-lucide="plus-circle"></i> <span>Adicionar à Lista</span>
+        </button>
     </div>
+
+    <div id="counter-container">
+        <span>Itens pendentes:</span>
+        <strong id="total-count">0</strong>
+    </div>    
 
     <ul id="lista" class="item-list"></ul>
 </div>
@@ -38,5 +62,6 @@
 <script src="scripts/storage.js"></script>
 <script src="scripts/ui.js"></script>
 <script src="scripts/main.js"></script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
