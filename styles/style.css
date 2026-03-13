@@ -118,10 +118,40 @@ h1 {
     border: 1.5px solid #c6f0d8;
 }
 
-.input-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-.row { display: flex; gap: 12px; }
-.flex-2 { flex: 2; }
-.flex-1 { flex: 1; }
+/* Garante que os campos fiquem alinhados pela base, mesmo com labels diferentes */
+.row { 
+    display: flex; 
+    gap: 12px; 
+    align-items: flex-end; /* Alinha o fundo dos inputs */
+    width: 100%;
+}
+
+.input-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 6px; 
+    margin-bottom: 12px;
+}
+
+/* Força o input de número a ocupar todo o espaço do container flex-1 */
+input[type="number"] {
+    width: 100%;
+    min-width: 0; /* Evita que o input "vaze" do container no mobile */
+}
+
+/* --- Ajuste para Telas Muito Pequenas --- */
+@media (max-width: 400px) {
+    .row {
+        flex-direction: column; /* Empilha os campos se a tela for minúscula */
+        align-items: stretch;
+    }
+    
+    .flex-1, .flex-2 {
+        flex: none;
+        width: 100%;
+    }
+}
+
 
 label {
     font-size: 0.78rem;
