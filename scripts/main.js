@@ -8,16 +8,8 @@ window.onload = () => {
 
     if (listaImportada) {
         try {
-<<<<<<< HEAD
             const decodificado = JSON.parse(atob(listaImportada));
             if (Array.isArray(decodificado) && confirm("Você recebeu uma lista compartilhada. Deseja carregar esses itens?")) {
-=======
-            // Decodificação segura para caracteres UTF-8 (acentos)
-            const jsonString = decodeURIComponent(escape(atob(listaImportada)));
-            const decodificado = JSON.parse(jsonString);
-            
-            if (confirm("Você recebeu uma lista compartilhada. Deseja carregar esses itens?")) {
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
                 itens = decodificado;
                 salvarItens(itens);
                 window.history.replaceState({}, document.title, window.location.pathname);
@@ -26,11 +18,7 @@ window.onload = () => {
                 itens = carregarItens();
             }
         } catch (e) {
-<<<<<<< HEAD
             console.warn('Falha ao importar lista:', e);
-=======
-            console.error("Erro na importação:", e);
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
             itens = carregarItens();
         }
     } else {
@@ -79,32 +67,17 @@ function gerenciarSalvar() {
     const elCat       = document.getElementById('itemCategory');
     const elQtd       = document.getElementById('itemQuantity');
     const elEditIndex = document.getElementById('editIndex');
-    const btnAdd = document.getElementById('addBtn');
 
     const name       = elNome.value.trim();
     const category   = elCat.value;
     const quantity   = Math.max(1, parseInt(elQtd.value) || 1);
     const indexAtual = parseInt(elEditIndex.value);
 
-<<<<<<< HEAD
     // Validações
     if (!name) {
         mostrarToast('Digite o nome do item!', 'warning');
         elNome.focus();
         return;
-=======
-    if (!name) return alert("Digite o nome do item!");
-
-    const duplicado = itens.some((it, i) => it.name.toLowerCase() === name.toLowerCase() && i !== indexAtual);
-    if (duplicado) return alert("Este item já está na lista!");
-
-    if (indexAtual > -1) {
-        itens[indexAtual] = { ...itens[indexAtual], name, category, quantity };
-        elEditIndex.value = "-1";
-        btnAdd.innerText = "Adicionar à Lista"; // Ajustado para funcionar sem o <span>
-    } else {
-        itens.push({ name, category, quantity, checked: false });
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
     }
 
     const duplicado = itens.some(
@@ -129,13 +102,9 @@ function gerenciarSalvar() {
 
     // Limpa formulário
     elNome.value = '';
-<<<<<<< HEAD
     elQtd.value  = '1';
     elNome.focus();
 
-=======
-    elQtd.value = '';
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
     atualizarTudo();
 }
 
@@ -151,11 +120,6 @@ function prepararEdicao(index) {
     btn.querySelector('span').innerText = 'Salvar Alterações';
     btn.classList.add('editing');
 
-<<<<<<< HEAD
-=======
-    document.getElementById('addBtn').innerText = "Salvar Alterações";
-    
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
     document.getElementById('form-topo').scrollIntoView({ behavior: 'smooth' });
     document.getElementById('itemName').focus();
 }
@@ -175,7 +139,6 @@ function toggleCheck(index) {
 
 // ───── REMOVER ITEM ─────
 function removerItem(index) {
-<<<<<<< HEAD
     const nome = itens[index].name;
     itens.splice(index, 1);
 
@@ -187,9 +150,6 @@ function removerItem(index) {
     }
 
     mostrarToast(`"${nome}" removido.`);
-=======
-    itens.splice(index, 1);
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
     atualizarTudo();
 }
 
@@ -212,7 +172,6 @@ function compartilhar() {
         return;
     }
 
-<<<<<<< HEAD
     const b64  = btoa(unescape(encodeURIComponent(JSON.stringify(itens))));
     const link = `${window.location.origin}${window.location.pathname}?lista=${b64}`;
 
@@ -238,26 +197,3 @@ function atualizarTudo() {
     salvarItens(itens);
     renderizarItens(itens, filtroAtual);
 }
-=======
-    try {
-        // Codificação segura para caracteres UTF-8 (acentos)
-        const jsonString = JSON.stringify(itens);
-        const b64 = btoa(unescape(encodeURIComponent(jsonString)));
-        
-        const link = `${window.location.origin}${window.location.pathname}?lista=${b64}`;
-        
-        const resumo = "📋 *Minha Lista de Despensa*\n\n" + 
-            itens.filter(i => !i.checked).map(i => `• ${i.name} (${i.quantity})`).join('\n') +
-            `\n\n🔗 Edite aqui: ${link}`;
-
-        if (navigator.share) {
-            navigator.share({ title: 'Lista de Despensa', text: resumo });
-        } else {
-            navigator.clipboard.writeText(resumo);
-            alert("Lista e link copiados!");
-        }
-    } catch (e) {
-        alert("Erro ao gerar link de compartilhamento.");
-    }
-}
->>>>>>> 44fdbe0fb628c1b2f7e9ca6ee4e2e9f012672e52
