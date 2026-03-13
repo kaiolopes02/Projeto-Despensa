@@ -4,21 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Despensa Familiar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
-
     <link rel="icon" type="image/png" href="assets/icon-192.png">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
     <link rel="manifest" href="site.webmanifest">
-    <meta name="theme-color" content="#2ecc71">
+    <meta name="theme-color" content="#1a5c3a">
 </head>
 <body>
 
+<div id="toast-container"></div>
+
 <div class="card">
     <header>
-        <h2><i data-lucide="shopping-cart"></i> Despensa Familiar</h2>
+        <div class="header-title">
+            <div class="logo-icon">
+                <i data-lucide="shopping-basket"></i>
+            </div>
+            <div>
+                <h1>Despensa</h1>
+                <p class="subtitle">Familiar</p>
+            </div>
+        </div>
         <button id="shareBtn" title="Compartilhar Lista">
-            <i data-lucide="share-2"></i> Compartilhar
+            <i data-lucide="share-2"></i>
+            <span>Compartilhar</span>
         </button>
     </header>
 
@@ -27,36 +40,84 @@
 
         <div class="input-group">
             <label for="itemName">O que está faltando?</label>
-            <input type="text" id="itemName" placeholder="Ex: Arroz, Detergente...">
+            <div class="input-wrapper">
+                <i data-lucide="package-plus" class="input-icon"></i>
+                <input type="text" id="itemName" placeholder="Ex: Arroz, Detergente..." autocomplete="off">
+            </div>
         </div>
 
         <div class="row">
             <div class="input-group flex-2">
                 <label for="itemCategory">Categoria</label>
-                <select id="itemCategory">
-                    <option value="Alimentos">🍎 Alimentos</option>
-                    <option value="Limpeza">🧼 Limpeza</option>
-                    <option value="Higiene">🪥 Higiene</option>
-                    <option value="Outros">📦 Outros</option>
-                </select>
+                <div class="select-wrapper">
+                    <select id="itemCategory">
+                        <option value="Alimentos">🍎 Alimentos</option>
+                        <option value="Limpeza">🧼 Limpeza</option>
+                        <option value="Higiene">🪥 Higiene</option>
+                        <option value="Outros">📦 Outros</option>
+                    </select>
+                    <i data-lucide="chevron-down" class="select-arrow"></i>
+                </div>
             </div>
             <div class="input-group flex-1">
-                <label for="itemQuantity">Qtd.</label>
-                <input type="number" id="itemQuantity" min="1" value=" ">
+                <label>Qtd.</label>
+                <div class="qty-wrapper">
+                    <button type="button" class="qty-btn" id="qtyMinus" aria-label="Diminuir">
+                        <i data-lucide="minus"></i>
+                    </button>
+                    <input type="number" id="itemQuantity" min="1" value="1" aria-label="Quantidade">
+                    <button type="button" class="qty-btn" id="qtyPlus" aria-label="Aumentar">
+                        <i data-lucide="plus"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
         <button id="addBtn">
-            <i data-lucide="plus-circle"></i> <span>Adicionar à Lista</span>
+            <i data-lucide="plus-circle"></i>
+            <span>Adicionar à Lista</span>
         </button>
     </div>
 
     <div id="counter-container">
-        <span>Itens pendentes:</span>
-        <strong id="total-count">0</strong>
-    </div>    
+        <div class="counter-item">
+            <span id="total-count">0</span>
+            <label>pendentes</label>
+        </div>
+        <div class="counter-divider"></div>
+        <div class="counter-item">
+            <span id="checked-count">0</span>
+            <label>comprados</label>
+        </div>
+        <div class="counter-divider"></div>
+        <div class="counter-item">
+            <span id="total-items">0</span>
+            <label>itens</label>
+        </div>
+    </div>
+
+    <div id="filter-bar">
+        <button class="filter-btn active" data-filter="todos">Todos</button>
+        <button class="filter-btn" data-filter="Alimentos">🍎 Alimentos</button>
+        <button class="filter-btn" data-filter="Limpeza">🧼 Limpeza</button>
+        <button class="filter-btn" data-filter="Higiene">🪥 Higiene</button>
+        <button class="filter-btn" data-filter="Outros">📦 Outros</button>
+    </div>
 
     <ul id="lista" class="item-list"></ul>
+
+    <div id="empty-state" class="hidden">
+        <div class="empty-icon"><i data-lucide="clipboard-list"></i></div>
+        <p>Lista vazia por enquanto!</p>
+        <span>Adicione o primeiro item acima para começar.</span>
+    </div>
+
+    <div id="list-actions" class="hidden">
+        <button id="clearCheckedBtn">
+            <i data-lucide="check-square"></i>
+            Limpar comprados
+        </button>
+    </div>
 </div>
 
 <script src="scripts/storage.js"></script>
