@@ -8,7 +8,7 @@ window.onload = () => {
 
     if (listaImportada) {
         try {
-            const decodificado = JSON.parse(atob(listaImportada));
+            const decodificado = JSON.parse(decodeURIComponent(escape(atob(listaImportada))));
             if (Array.isArray(decodificado) && confirm("Você recebeu uma lista compartilhada. Deseja carregar esses itens?")) {
                 itens = decodificado;
                 salvarItens(itens);
