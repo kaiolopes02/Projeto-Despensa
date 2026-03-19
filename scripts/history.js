@@ -103,38 +103,41 @@ function renderizarHistorico() {
     historico.forEach((entrada, idx) => {
         const card = document.createElement('div');
         card.className = 'history-card';
-        card.style.animationDelay = `${idx * 60}ms`;
+        card.style.animationDelay = `${idx * 55}ms`;
 
         const total    = entrada.itens.length;
         const resumo   = `${total} item${total !== 1 ? 's' : ''}`;
 
-        // Chips de prévia — primeiros 4 itens + "e mais N"
-        const preview  = entrada.itens.slice(0, 4);
+        // Chips de prévia — primeiros 5 itens + "e mais N"
+        const preview  = entrada.itens.slice(0, 5);
         const restante = total - preview.length;
         const chipsHtml = preview
             .map(i => `<span class="preview-chip">${escapeHtml(i.name)}</span>`)
             .join('') +
             (restante > 0
-                ? `<span class="preview-chip more">+${restante}</span>`
+                ? `<span class="preview-chip more">+${restante} mais</span>`
                 : '');
 
         card.innerHTML = `
-            <div class="history-card-header">
-                <div class="history-meta">
-                    <div class="history-date">${entrada.data}</div>
-                    <div class="history-summary">${resumo}</div>
+            <div class="history-card-top">
+                <div class="history-entry-label">
+                    <div class="history-index">${idx + 1}</div>
+                    <span class="history-date">${entrada.data}</span>
                 </div>
-                <div class="history-card-actions">
-                    <button class="btn-use-history" onclick="usarComoBase(${entrada.id})">
-                        <i data-lucide="copy-plus"></i>
-                        Usar como base
-                    </button>
-                    <button class="btn-del-history" onclick="excluirEntradaHistorico(${entrada.id})" title="Remover do histórico">
-                        <i data-lucide="trash-2"></i>
-                    </button>
-                </div>
+                <span class="history-item-count">${resumo}</span>
             </div>
-            <div class="history-items-preview">${chipsHtml}</div>
+            <div class="history-card-body">
+                <div class="history-items-preview">${chipsHtml}</div>
+            </div>
+            <div class="history-card-footer">
+                <button class="btn-use-history" onclick="usarComoBase(${entrada.id})">
+                    <i data-lucide="copy-plus"></i>
+                    Usar como base
+                </button>
+                <button class="btn-del-history" onclick="excluirEntradaHistorico(${entrada.id})" title="Remover do histórico">
+                    <i data-lucide="trash-2"></i>
+                </button>
+            </div>
         `;
         container.appendChild(card);
     });
