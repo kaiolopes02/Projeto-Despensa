@@ -614,71 +614,68 @@ input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
 .history-card {
     border: 1.5px solid var(--border);
     border-radius: 14px;
-    padding: 14px 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    animation: itemIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+    overflow: hidden;
+    background: #fff;
+    transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+    animation: itemIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.history-card:hover { border-color: #a7f3d0; box-shadow: 0 3px 14px rgba(26,92,58,0.09); }
-
-.history-card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-    margin-bottom: 10px;
-}
-.history-meta { flex: 1; min-width: 0; }
-.history-date {
-    font-size: 0.72rem;
-    font-weight: 800;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 2px;
-}
-.history-summary {
-    font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--text);
+.history-card:hover {
+    border-color: #a7f3d0;
+    box-shadow: 0 6px 24px rgba(26,92,58,0.11);
+    transform: translateY(-1px);
 }
 
-.history-card-actions { display: flex; gap: 6px; flex-shrink: 0; }
-
-.btn-use-history {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 7px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: 'Nunito', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 800;
+/* Topo do card — faixa verde + número de índice */
+.history-card-top {
+    background: linear-gradient(135deg, var(--primary) 0%, #22865a 100%);
+    padding: 12px 16px 11px;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-    white-space: nowrap;
+    justify-content: space-between;
+    gap: 8px;
 }
-.btn-use-history:hover { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,92,58,0.28); }
-.btn-use-history svg { width: 13px; height: 13px; }
-
-.btn-del-history {
-    background: none;
-    border: 1.5px solid var(--border);
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    cursor: pointer;
+.history-entry-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.history-index {
+    width: 26px; height: 26px;
+    background: rgba(255,255,255,0.18);
+    border-radius: 7px;
     display: grid;
     place-items: center;
-    color: var(--muted);
-    transition: all 0.18s;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #fff;
     flex-shrink: 0;
 }
-.btn-del-history:hover { background: var(--danger-light); color: var(--danger); border-color: var(--danger); }
-.btn-del-history svg { width: 14px; height: 14px; }
+.history-date {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+}
+.history-item-count {
+    background: rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #fff;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
 
+/* Corpo — chips de prévia */
+.history-card-body {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    min-height: 52px;
+    display: flex;
+    align-items: flex-start;
+}
 .history-items-preview {
     display: flex;
     flex-wrap: wrap;
@@ -688,18 +685,71 @@ input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 100px;
-    padding: 3px 10px;
-    font-size: 0.73rem;
+    padding: 4px 11px;
+    font-size: 0.75rem;
     font-weight: 600;
     color: var(--muted);
     white-space: nowrap;
+    line-height: 1.3;
 }
 .preview-chip.more {
     background: var(--primary-dim);
     color: var(--primary);
-    border-color: transparent;
+    border-color: rgba(26,92,58,0.2);
     font-weight: 800;
 }
+
+/* Rodapé — botões de ação */
+.history-card-footer {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #fafaf8;
+}
+.btn-use-history {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex: 1;
+    justify-content: center;
+}
+.btn-use-history:hover {
+    background: var(--primary-hover);
+    box-shadow: 0 4px 14px rgba(26,92,58,0.3);
+}
+.btn-use-history svg { width: 14px; height: 14px; }
+
+.btn-del-history {
+    background: none;
+    border: 1.5px solid var(--border);
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    color: var(--muted);
+    transition: all 0.18s;
+    flex-shrink: 0;
+}
+.btn-del-history:hover {
+    background: var(--danger-light);
+    color: var(--danger);
+    border-color: #fca5a5;
+}
+.btn-del-history svg { width: 15px; height: 15px; }
 
 /* History empty */
 #history-empty {
