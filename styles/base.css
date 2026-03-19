@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════
+   BASE — variáveis, reset, body, utils
+═══════════════════════════════════════ */
+
+:root {
+    --primary:       #1a5c3a;
+    --primary-hover: #14472d;
+    --primary-light: #d1fae5;
+    --primary-dim:   rgba(26,92,58,0.1);
+    --accent:        #f59e0b;
+    --accent-light:  #fef3c7;
+    --bg:            #f7f4ef;
+    --card:          #ffffff;
+    --text:          #1c1917;
+    --muted:         #78716c;
+    --border:        #e5e2dd;
+    --danger:        #dc2626;
+    --danger-light:  #fee2e2;
+    --success:       #16a34a;
+    --radius:        20px;
+    --radius-sm:     11px;
+    --shadow:        0 20px 60px -10px rgba(26,92,58,0.18),
+                     0 4px 16px -4px rgba(0,0,0,0.06);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', system-ui, sans-serif;
+    background: var(--bg);
+    background-image:
+        radial-gradient(ellipse 60% 50% at 10% 0%,  rgba(26,92,58,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 90% 100%, rgba(245,158,11,0.07) 0%, transparent 70%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 16px 60px;
+    color: var(--text);
+}
+
+/* ── Keyframes globais ── */
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(28px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes itemIn {
+    from { opacity: 0; transform: translateY(-10px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateY(14px) scale(0.88); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes toastOut {
+    to { opacity: 0; transform: translateY(8px) scale(0.9); }
+}
+
+@keyframes overlayIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes overlayOut {
+    to { opacity: 0; }
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.96); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes modalOut {
+    to { opacity: 0; transform: translateY(14px) scale(0.97); }
+}
+
+/* ── Utils ── */
+.hidden { display: none !important; }
