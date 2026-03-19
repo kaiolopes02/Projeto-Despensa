@@ -1,0 +1,230 @@
+/* ═══════════════════════════════════════
+   LIST — contador, filtros, itens, ações
+═══════════════════════════════════════ */
+
+/* ── Contador ── */
+#counter-container {
+    display: flex;
+    align-items: center;
+    background: var(--bg);
+    border-radius: 14px;
+    padding: 14px 10px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border);
+}
+
+.counter-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+.counter-item span {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+    transition: all 0.3s;
+}
+.counter-item label {
+    font-size: 0.68rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 700;
+}
+.counter-divider {
+    width: 1px;
+    height: 34px;
+    background: var(--border);
+}
+
+/* ── Filtros de categoria ── */
+#filter-bar {
+    display: flex;
+    gap: 7px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+#filter-bar::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+    background: #f1f5f9;
+    border: 1.5px solid transparent;
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--muted);
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+.filter-btn:hover  { background: var(--primary-light); color: var(--primary); }
+.filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+/* ── Lista de itens ── */
+.item-list { list-style: none; }
+
+.item-card {
+    background: #fff;
+    border: 1.5px solid var(--border);
+    padding: 12px 14px;
+    border-radius: 13px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    transition: border-color 0.22s, box-shadow 0.22s, opacity 0.3s, background 0.3s;
+    animation: itemIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.item-card:hover {
+    border-color: #a7f3d0;
+    box-shadow: 0 3px 14px rgba(26,92,58,0.09);
+}
+.item-card.checked {
+    background: #fafaf9;
+    border-color: #e5e2dd;
+    opacity: 0.6;
+}
+.item-card.checked .item-name {
+    text-decoration: line-through;
+    color: var(--muted);
+}
+
+/* Indicador de categoria */
+.cat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: 2px;
+}
+
+/* Checkbox circular */
+.check-circle {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.22s;
+    background: #fff;
+}
+.check-circle svg { width: 13px; height: 13px; color: #fff; opacity: 0; transition: opacity 0.2s; }
+.item-card:not(.checked) .check-circle:hover { border-color: var(--primary); background: var(--primary-light); }
+.item-card.checked .check-circle              { background: var(--primary); border-color: var(--primary); }
+.item-card.checked .check-circle svg          { opacity: 1; }
+
+/* Info do item */
+.item-info { flex-grow: 1; cursor: pointer; min-width: 0; }
+.item-name {
+    font-weight: 700;
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.94rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s;
+}
+.item-details {
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.cat-chip {
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+}
+.qty-badge { font-weight: 700; font-size: 0.72rem; color: var(--muted); }
+
+/* Ações por item */
+.actions { display: flex; gap: 3px; flex-shrink: 0; }
+.btn-icon {
+    background: none;
+    border: none;
+    padding: 7px;
+    cursor: pointer;
+    border-radius: 8px;
+    color: var(--muted);
+    transition: all 0.18s;
+    display: grid;
+    place-items: center;
+}
+.btn-icon svg { width: 16px; height: 16px; }
+.btn-icon:hover { background: var(--primary-light); color: var(--primary); }
+.btn-del:hover  { color: var(--danger); background: var(--danger-light); }
+
+/* ── Empty state ── */
+#empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--muted);
+    animation: fadeIn 0.4s ease;
+}
+.empty-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--bg);
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 14px;
+    color: #c4bfbb;
+}
+.empty-icon svg { width: 32px; height: 32px; }
+#empty-state p {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #c4bfbb;
+    margin-bottom: 5px;
+}
+#empty-state span { font-size: 0.84rem; color: #c4bfbb; }
+
+/* ── Ações da lista (salvar / limpar) ── */
+#list-actions {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#saveHistoryBtn,
+#clearCheckedBtn {
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+}
+#saveHistoryBtn svg,
+#clearCheckedBtn svg { width: 15px; height: 15px; }
+
+#saveHistoryBtn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+#clearCheckedBtn:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
