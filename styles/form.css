@@ -1,0 +1,157 @@
+/* ═══════════════════════════════════════
+   FORM — formulário de adição / edição
+═══════════════════════════════════════ */
+
+.form-container {
+    background: linear-gradient(140deg, #f0fdf8 0%, #f5fef0 100%);
+    padding: 18px;
+    border-radius: 16px;
+    margin-bottom: 22px;
+    border: 1.5px solid #c6f0d8;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+}
+
+.row    { display: flex; gap: 12px; }
+.flex-2 { flex: 2; }
+.flex-1 { flex: 1; }
+
+label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* ── Input com ícone ── */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-icon {
+    position: absolute;
+    left: 11px;
+    color: var(--muted);
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+    flex-shrink: 0;
+}
+.input-wrapper input { padding-left: 36px; }
+
+/* ── Inputs e selects base ── */
+input, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-dim);
+}
+
+/* ── Select ── */
+.select-wrapper { position: relative; }
+.select-wrapper select { padding-right: 32px; cursor: pointer; }
+.select-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--muted);
+    width: 16px;
+    height: 16px;
+}
+
+/* ── Stepper de quantidade ── */
+.qty-wrapper {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    height: 42px;
+}
+.qty-wrapper:focus-within {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-dim);
+}
+.qty-btn {
+    background: #f4f6f0;
+    border: none;
+    padding: 0 11px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: background 0.15s, color 0.15s;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+.qty-btn:hover { background: var(--primary); color: #fff; }
+.qty-btn svg   { width: 14px; height: 14px; }
+
+.qty-wrapper input {
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    padding: 0 4px;
+    box-shadow: none !important;
+    width: 40px;
+    min-width: 0;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+/* ── Botão adicionar ── */
+#addBtn {
+    width: 100%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: 13px;
+    border-radius: var(--radius-sm);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#addBtn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26,92,58,0.35);
+}
+#addBtn:active { transform: translateY(0); box-shadow: none; }
+#addBtn svg    { width: 18px; height: 18px; }
+
+#addBtn.editing { background: var(--accent); color: #1c1917; }
+#addBtn.editing:hover {
+    background: #d97706;
+    box-shadow: 0 6px 20px rgba(245,158,11,0.35);
+    color: #fff;
+}
