@@ -33,7 +33,6 @@ window.onload = () => {
 // ───── EVENTOS ─────
 document.getElementById('addBtn').addEventListener('click', gerenciarSalvar);
 document.getElementById('shareBtn').addEventListener('click', compartilhar);
-document.getElementById('clearCheckedBtn').addEventListener('click', limparComprados);
 document.getElementById('clearAllBtn').addEventListener('click', limparTudo);
 document.getElementById('saveHistoryBtn').addEventListener('click', () => salvarListaNoHistorico(itens));
 
@@ -165,18 +164,6 @@ function limparTudo() {
     document.getElementById('itemName').value = '';
     document.getElementById('itemQuantity').value = '1';
     mostrarToast('Lista limpa!', 'success');
-    atualizarTudo();
-}
-
-// ───── LIMPAR COMPRADOS ─────
-function limparComprados() {
-    const qtd = itens.filter(i => i.checked).length;
-    if (qtd === 0) {
-        mostrarToast('Nenhum item comprado para limpar.', 'warning');
-        return;
-    }
-    itens = itens.filter(i => !i.checked);
-    mostrarToast(`${qtd} item${qtd > 1 ? 's' : ''} removido${qtd > 1 ? 's' : ''}!`, 'success');
     atualizarTudo();
 }
 
