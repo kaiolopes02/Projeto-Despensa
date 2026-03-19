@@ -1,0 +1,31 @@
+/* ═══════════════════════════════════════
+   RESPONSIVE — mobile (≤ 480px)
+═══════════════════════════════════════ */
+
+@media (max-width: 480px) {
+    body { padding: 12px 12px 50px; }
+
+    .card { padding: 20px 16px; border-radius: 18px; }
+
+    /* Header */
+    #shareBtn span { display: none; }
+    #shareBtn { padding: 10px; border-radius: 10px; }
+
+    /* Form */
+    .row { flex-direction: column; gap: 10px; }
+    .flex-2, .flex-1 { flex: none; width: 100%; }
+
+    /* Filtros */
+    .filter-btn { padding: 6px 11px; font-size: 0.78rem; }
+
+    /* Modal do histórico: sobe da base da tela sem gap */
+    #history-overlay {
+        align-items: flex-end;
+        padding: 0;
+    }
+    #history-modal {
+        border-radius: 22px 22px 0 0;
+        max-height: 88vh;
+        padding: 20px 18px 32px; /* padding-bottom maior p/ safe area */
+    }
+}
