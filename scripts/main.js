@@ -26,6 +26,7 @@ window.onload = () => {
     }
 
     renderizarItens(itens, filtroAtual);
+    atualizarBotaoHistorico();
     lucide.createIcons();
 };
 
@@ -33,6 +34,7 @@ window.onload = () => {
 document.getElementById('addBtn').addEventListener('click', gerenciarSalvar);
 document.getElementById('shareBtn').addEventListener('click', compartilhar);
 document.getElementById('clearCheckedBtn').addEventListener('click', limparComprados);
+document.getElementById('saveHistoryBtn').addEventListener('click', () => salvarListaNoHistorico(itens));
 
 // Submete com Enter no campo nome
 document.getElementById('itemName').addEventListener('keydown', (e) => {
