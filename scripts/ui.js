@@ -37,9 +37,12 @@ function renderizarItens(itens, filtro = 'todos') {
         emptyState.classList.add('hidden');
     }
 
-    // Botão "limpar comprados"
+    // Área de ações: aparece sempre que há itens na lista
+    listActions.classList.toggle('hidden', itens.length === 0);
+
+    // Botão "limpar comprados": só aparece quando há itens marcados
     const temComprados = itens.some(i => i.checked);
-    listActions.classList.toggle('hidden', !temComprados);
+    document.getElementById('clearCheckedBtn').classList.toggle('hidden', !temComprados);
 
     // Renderiza itens
     itensFiltrados.forEach(item => {
