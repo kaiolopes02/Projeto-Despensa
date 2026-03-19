@@ -198,18 +198,27 @@
 }
 #empty-state span { font-size: 0.84rem; color: #c4bfbb; }
 
-/* ── Cabeçalho da lista (botão salvar) ── */
+/* ── Cabeçalho da lista ── */
 #list-header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
     margin-bottom: 12px;
+}
+
+.list-header-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 #saveHistoryBtn {
     background: var(--primary-light);
     border: 1.5px solid rgba(26,92,58,0.2);
     color: var(--primary);
-    padding: 8px 16px;
+    padding: 8px 14px;
     border-radius: 100px;
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
@@ -217,8 +226,9 @@
     font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 6px;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 #saveHistoryBtn:hover {
     background: var(--primary);
@@ -228,27 +238,28 @@
 }
 #saveHistoryBtn svg { width: 15px; height: 15px; }
 
-/* ── Ações da lista (limpar comprados) ── */
-#list-actions {
-    margin-top: 14px;
-    display: flex;
-    justify-content: center;
-}
-
-#clearCheckedBtn {
+#clearCheckedBtn,
+#clearAllBtn {
     background: none;
     border: 1.5px solid var(--border);
     color: var(--muted);
-    padding: 8px 16px;
+    padding: 8px 12px;
     border-radius: 100px;
     cursor: pointer;
     font-family: 'Nunito', sans-serif;
-    font-size: 0.83rem;
+    font-size: 0.8rem;
     font-weight: 700;
     display: flex;
     align-items: center;
-    gap: 7px;
+    gap: 5px;
     transition: all 0.2s;
+    white-space: nowrap;
 }
-#clearCheckedBtn svg { width: 15px; height: 15px; }
-#clearCheckedBtn:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+#clearCheckedBtn svg,
+#clearAllBtn svg { width: 14px; height: 14px; }
+
+#clearCheckedBtn:hover { border-color: var(--accent); color: #92400e; background: var(--accent-light); }
+#clearAllBtn:hover     { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
+
+/* ── list-actions não usado mais, mantido por segurança ── */
+#list-actions { display: none; }
