@@ -210,7 +210,6 @@
 .list-header-right {
     display: flex;
     align-items: center;
-    gap: 6px;
     flex-shrink: 0;
 }
 
@@ -238,7 +237,6 @@
 }
 #saveHistoryBtn svg { width: 15px; height: 15px; }
 
-#clearCheckedBtn,
 #clearAllBtn {
     background: none;
     border: 1.5px solid var(--border);
@@ -255,11 +253,5 @@
     transition: all 0.2s;
     white-space: nowrap;
 }
-#clearCheckedBtn svg,
 #clearAllBtn svg { width: 14px; height: 14px; }
-
-#clearCheckedBtn:hover { border-color: var(--accent); color: #92400e; background: var(--accent-light); }
-#clearAllBtn:hover     { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
-
-/* ── list-actions não usado mais, mantido por segurança ── */
-#list-actions { display: none; }
+#clearAllBtn:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
