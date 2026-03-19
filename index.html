@@ -117,6 +117,13 @@
         <button class="filter-btn" data-filter="Outros">📦 Outros</button>
     </div>
 
+    <div id="list-header" class="hidden">
+        <button id="saveHistoryBtn">
+            <i data-lucide="archive"></i>
+            Salvar no Histórico
+        </button>
+    </div>
+
     <ul id="lista" class="item-list"></ul>
 
     <div id="empty-state" class="hidden">
@@ -126,11 +133,7 @@
     </div>
 
     <div id="list-actions" class="hidden">
-        <button id="saveHistoryBtn">
-            <i data-lucide="archive"></i>
-            Salvar no Histórico
-        </button>
-        <button id="clearCheckedBtn" class="hidden">
+        <button id="clearCheckedBtn">
             <i data-lucide="check-square"></i>
             Limpar comprados
         </button>
