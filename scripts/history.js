@@ -20,30 +20,34 @@ function salvarHistorico(historico) {
     }
 }
 
-// ───── SALVAR LISTA NO HISTÓRICO ─────
-function salvarListaNoHistorico(itens) {
-    if (!itens || itens.length === 0) {
+// ───── SALVAR LISTA NO HISTÓRICO (e limpar lista ativa) ─────
+function salvarListaNoHistorico(itensAtivos) {
+    if (!itensAtivos || itensAtivos.length === 0) {
         mostrarToast('A lista está vazia!', 'warning');
         return;
     }
 
     const historico = carregarHistorico();
 
-    // Cria entrada nova
     const agora = new Date();
     const entrada = {
-        id:      agora.getTime(),
-        data:    formatarData(agora),
-        itens:   JSON.parse(JSON.stringify(itens)),          // deep copy
+        id:   agora.getTime(),
+        data: formatarData(agora),
+        itens: JSON.parse(JSON.stringify(itensAtivos)), // deep copy
     };
 
-    // Insere no início e limita a MAX_HISTORY
     historico.unshift(entrada);
     if (historico.length > MAX_HISTORY) historico.length = MAX_HISTORY;
 
     salvarHistorico(historico);
+
+    // Limpa a lista ativa após salvar
+    itens = [];
+    salvarItens(itens);
+    renderizarItens(itens, filtroAtual);
+
     atualizarBotaoHistorico();
-    mostrarToast('Lista salva no histórico!', 'success');
+    mostrarToast('Lista salva no histórico e limpa!', 'success');
 }
 
 // ───── USAR LISTA DO HISTÓRICO COMO BASE ─────
@@ -105,18 +109,13 @@ function renderizarHistorico() {
         card.className = 'history-card';
         card.style.animationDelay = `${idx * 55}ms`;
 
-        const total    = entrada.itens.length;
-        const resumo   = `${total} item${total !== 1 ? 's' : ''}`;
+        const total  = entrada.itens.length;
+        const resumo = `${total} item${total !== 1 ? 's' : ''}`;
 
-        // Chips de prévia — primeiros 5 itens + "e mais N"
-        const preview  = entrada.itens.slice(0, 5);
-        const restante = total - preview.length;
-        const chipsHtml = preview
+        // Chips de todos os itens
+        const chipsHtml = entrada.itens
             .map(i => `<span class="preview-chip">${escapeHtml(i.name)}</span>`)
-            .join('') +
-            (restante > 0
-                ? `<span class="preview-chip more">+${restante} mais</span>`
-                : '');
+            .join('');
 
         card.innerHTML = `
             <div class="history-card-top">
@@ -185,11 +184,10 @@ document.addEventListener('keydown', (e) => {
 
 // ───── HELPERS ─────
 function formatarData(date) {
-    const pad = n => String(n).padStart(2, '0');
-    const d   = pad(date.getDate());
-    const m   = pad(date.getMonth() + 1);
-    const y   = date.getFullYear();
-    const H   = pad(date.getHours());
-    const M   = pad(date.getMinutes());
-    return `${d}/${m}/${y} às ${H}:${M}`;
+    const datePart = date.toLocaleDateString('pt-BR', {
+        day: 'numeric', month: 'long', year: 'numeric'
+    });
+    const pad  = n => String(n).padStart(2, '0');
+    const hora = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
+    return `${datePart} às ${hora}`;
 }
