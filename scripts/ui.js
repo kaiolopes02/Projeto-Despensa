@@ -7,9 +7,8 @@ const CAT_COLORS = {
 };
 
 function renderizarItens(itens, filtro = 'todos') {
-    const lista       = document.getElementById('lista');
-    const emptyState  = document.getElementById('empty-state');
-    const listActions = document.getElementById('list-actions');
+    const lista      = document.getElementById('lista');
+    const emptyState = document.getElementById('empty-state');
 
     lista.innerHTML = '';
 
@@ -37,12 +36,12 @@ function renderizarItens(itens, filtro = 'todos') {
         emptyState.classList.add('hidden');
     }
 
-    // Área de ações: aparece sempre que há itens na lista
-    listActions.classList.toggle('hidden', itens.length === 0);
+    // Cabeçalho da lista com botão salvar: aparece sempre que há itens
+    document.getElementById('list-header').classList.toggle('hidden', itens.length === 0);
 
     // Botão "limpar comprados": só aparece quando há itens marcados
     const temComprados = itens.some(i => i.checked);
-    document.getElementById('clearCheckedBtn').classList.toggle('hidden', !temComprados);
+    document.getElementById('list-actions').classList.toggle('hidden', !temComprados);
 
     // Renderiza itens
     itensFiltrados.forEach(item => {
