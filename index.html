@@ -29,10 +29,15 @@
                 <p class="subtitle">Familiar</p>
             </div>
         </div>
-        <button id="shareBtn" title="Compartilhar Lista">
-            <i data-lucide="share-2"></i>
-            <span>Compartilhar</span>
-        </button>
+        <div class="header-actions">
+            <button id="historyBtn" title="Ver Histórico">
+                <i data-lucide="history"></i>
+            </button>
+            <button id="shareBtn" title="Compartilhar Lista">
+                <i data-lucide="share-2"></i>
+                <span>Compartilhar</span>
+            </button>
+        </div>
     </header>
 
     <div class="form-container" id="form-topo">
@@ -113,6 +118,10 @@
     </div>
 
     <div id="list-actions" class="hidden">
+        <button id="saveHistoryBtn">
+            <i data-lucide="archive"></i>
+            Salvar no Histórico
+        </button>
         <button id="clearCheckedBtn">
             <i data-lucide="check-square"></i>
             Limpar comprados
@@ -120,7 +129,30 @@
     </div>
 </div>
 
+<!-- Modal de Histórico -->
+<div id="history-overlay" class="hidden" aria-modal="true" role="dialog" aria-label="Histórico de listas">
+    <div id="history-modal">
+        <div class="history-header">
+            <div class="history-title-group">
+                <i data-lucide="history"></i>
+                <h2>Histórico</h2>
+            </div>
+            <button id="closeHistoryBtn" aria-label="Fechar histórico">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <p class="history-subtitle">Até 5 listas salvas. Use qualquer uma como ponto de partida.</p>
+        <div id="history-list"></div>
+        <div id="history-empty" class="hidden">
+            <i data-lucide="inbox"></i>
+            <p>Nenhuma lista salva ainda.</p>
+            <span>Clique em "Salvar no Histórico" para arquivar sua lista atual.</span>
+        </div>
+    </div>
+</div>
+
 <script src="scripts/storage.js"></script>
+<script src="scripts/history.js"></script>
 <script src="scripts/ui.js"></script>
 <script src="scripts/main.js"></script>
 <script>lucide.createIcons();</script>
