@@ -18,6 +18,11 @@
     /* Filtros */
     .filter-btn { padding: 6px 11px; font-size: 0.78rem; }
 
+    /* Cabeçalho da lista: empilha em duas linhas no mobile */
+    #list-header { flex-wrap: wrap; gap: 8px; }
+    #saveHistoryBtn { flex: 1; justify-content: center; }
+    .list-header-right { width: 100%; justify-content: flex-end; }
+
     /* Modal do histórico: sobe da base da tela sem gap */
     #history-overlay {
         align-items: flex-end;
@@ -26,6 +31,6 @@
     #history-modal {
         border-radius: 22px 22px 0 0;
         max-height: 88vh;
-        padding: 20px 18px 32px; /* padding-bottom maior p/ safe area */
+        padding: 20px 18px 32px;
     }
 }
