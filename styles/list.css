@@ -198,16 +198,43 @@
 }
 #empty-state span { font-size: 0.84rem; color: #c4bfbb; }
 
-/* ── Ações da lista (salvar / limpar) ── */
+/* ── Cabeçalho da lista (botão salvar) ── */
+#list-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 12px;
+}
+
+#saveHistoryBtn {
+    background: var(--primary-light);
+    border: 1.5px solid rgba(26,92,58,0.2);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.83rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s;
+}
+#saveHistoryBtn:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 4px 14px rgba(26,92,58,0.25);
+}
+#saveHistoryBtn svg { width: 15px; height: 15px; }
+
+/* ── Ações da lista (limpar comprados) ── */
 #list-actions {
     margin-top: 14px;
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
-#saveHistoryBtn,
 #clearCheckedBtn {
     background: none;
     border: 1.5px solid var(--border);
@@ -223,8 +250,5 @@
     gap: 7px;
     transition: all 0.2s;
 }
-#saveHistoryBtn svg,
 #clearCheckedBtn svg { width: 15px; height: 15px; }
-
-#saveHistoryBtn:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
 #clearCheckedBtn:hover { border-color: var(--danger); color: var(--danger); background: var(--danger-light); }
