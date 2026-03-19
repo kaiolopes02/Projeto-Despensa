@@ -34,6 +34,7 @@ window.onload = () => {
 document.getElementById('addBtn').addEventListener('click', gerenciarSalvar);
 document.getElementById('shareBtn').addEventListener('click', compartilhar);
 document.getElementById('clearCheckedBtn').addEventListener('click', limparComprados);
+document.getElementById('clearAllBtn').addEventListener('click', limparTudo);
 document.getElementById('saveHistoryBtn').addEventListener('click', () => salvarListaNoHistorico(itens));
 
 // Submete com Enter no campo nome
@@ -152,6 +153,18 @@ function removerItem(index) {
     }
 
     mostrarToast(`"${nome}" removido.`);
+    atualizarTudo();
+}
+
+// ───── LIMPAR TUDO ─────
+function limparTudo() {
+    if (itens.length === 0) return;
+    if (!confirm(`Remover todos os ${itens.length} itens da lista?`)) return;
+    itens = [];
+    cancelarEdicao();
+    document.getElementById('itemName').value = '';
+    document.getElementById('itemQuantity').value = '1';
+    mostrarToast('Lista limpa!', 'success');
     atualizarTudo();
 }
 
