@@ -39,10 +39,6 @@ function renderizarItens(itens, filtro = 'todos') {
     // Cabeçalho da lista: aparece sempre que há itens
     document.getElementById('list-header').classList.toggle('hidden', itens.length === 0);
 
-    // Botão "limpar comprados": só quando há marcados
-    const temComprados = itens.some(i => i.checked);
-    document.getElementById('clearCheckedBtn').classList.toggle('hidden', !temComprados);
-
     // Renderiza itens
     itensFiltrados.forEach(item => {
         const index = itens.indexOf(item);
