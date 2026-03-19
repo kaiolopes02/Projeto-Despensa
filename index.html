@@ -7,7 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
+
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/layout.css">
+    <link rel="stylesheet" href="styles/form.css">
+    <link rel="stylesheet" href="styles/list.css">
+    <link rel="stylesheet" href="styles/history.css">
+    <link rel="stylesheet" href="styles/toast.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" type="image/png" href="assets/icon-192.png">
     <link rel="apple-touch-icon" href="assets/icon-192.png">
@@ -122,7 +130,7 @@
             <i data-lucide="archive"></i>
             Salvar no Histórico
         </button>
-        <button id="clearCheckedBtn">
+        <button id="clearCheckedBtn" class="hidden">
             <i data-lucide="check-square"></i>
             Limpar comprados
         </button>
@@ -141,7 +149,6 @@
                 <i data-lucide="x"></i>
             </button>
         </div>
-        <p class="history-subtitle">Até 5 listas salvas. Use qualquer uma como ponto de partida.</p>
         <div id="history-list"></div>
         <div id="history-empty" class="hidden">
             <i data-lucide="inbox"></i>
